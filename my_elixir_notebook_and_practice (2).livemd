@@ -116,6 +116,35 @@ Atoms they being defined as constants whose values are the same as their names o
 Atoms we usually use them as reference status for a specific given request. One thing to master is that the name(variable) and value of that variable are always the same.
 And they are mostly used for pattern matching.
 
+## Examples on Atom
+
+We can write atoms in something tuple {}, I am going to represent tuple using some pattern matching technique of LHS = RHS. See the code example below.
+
+```elixir
+# demostrating using the error and success status from the code 
+# using pattern matching 
+
+{:error, bug} = {:error, "Sorry there is bug in your code"}
+# calling our variable bug to see its value (extracting it)
+bug
+
+# To show some success response using atoms
+{:success, positive} = {:success, "Congradulation your code its perfect"}
+positive
+```
+
+The code above showed how we can use atoms in pattern matching and demostrate the definition of atoms where we can see that the name of the atom is the same with its value through pattern matching.
+
+## Strings
+
+String is another type of data and are being represented by --> " ", not single quote because those ones are for characters. Some examples for strings are below :
+
+```elixir
+# can declare a variable to store our strings
+name = "Hataluli"
+name
+```
+
 ## More data types to come
 
 ## Recursion
