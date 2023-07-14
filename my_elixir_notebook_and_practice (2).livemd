@@ -115,3 +115,11 @@ Atoms they being defined as constants whose values are the same as their names o
 
 Atoms we usually use them as reference status for a specific given request. One thing to master is that the name(variable) and value of that variable are always the same.
 And they are mostly used for pattern matching.
+
+## More data types to come
+
+## Section
+
+```elixir
+
+```
