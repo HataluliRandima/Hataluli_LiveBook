@@ -1,0 +1,98 @@
+# My Elixir notebook and practice
+
+## Match Operator "="
+
+Learnt about match operator , which back then through my coding or from other programming languages it is an assignment operator which is so easy to use. Now from here on elixir its a different thing where its called match operator used to match our left hand side and right hand side. Used in mathematics alot the LHS = RHS especially on trig. Examples below :
+
+```elixir
+h = 3
+3 = h
+```
+
+When doing the match operator always if your variable its on the left hand side, our elixir thinks we are assigning our variable with a new value and it doesnt keep track of that value. But you only stop that by using ^ , see the example below : 
+So i said k = 5  which its an error because k its already bounded to 4 and try to match 4 and 5 which is wrong on line 5
+
+```elixir
+k = 1
+k = 2
+k = 3
+k = 4
+^k = 5
+5 = k
+```
+
+The example above it will work perfectly fine because we are using = as math operator not as an assignment operator. Indeed our LHS = RHS as line 1 we showed by h = 3 and still line 2 its the same and when evaluating it gives us the answer thats were we validate our match operator. Another example below:
+
+```elixir
+name = "Hataluli"
+"Hataluli" = name
+name
+```
+
+All the things above it was my unlearning journey about "=" because for me it was assignment operator and now its match operator. The other thing is that once i assign my variable with a value it bound to that specefic value so if i try to change the value then it wont work as it will be different value, then even our match operator it will fail see the example below
+
+```elixir
+b = 1
+2 = b
+```
+
+The above code it wont work because my var b is assigned with value 1 and on line 2 i am trying to bound it with different value which will fail because its already bounded with val 1 and our LHS is not equal to RHS. The main point of this discusion is to treat '=' as match operator not as assignment operator from other programming languages.
+
+## Pattern Matching
+
+Demostrate the pattern matching using list in elixir See the example below usage of match operator :
+
+```elixir
+[h, h] = [1, 2]
+```
+
+The above code is not working because our LHS is not equal to RHS , the var h is bounded with the value 1 and then now its trying to bound with value 2 which its giving us error because h its already taken by 1 . and this takes back when we say all variables in functional programming are immutable (unable to be changed) - working with constants . Meaning that here we cant just randomly assign new value to existing variable in elixir.
+
+<!-- livebook:{"break_markdown":true} -->
+
+The code will perfectly work fine because are the same values bounding to same variables which is a LHS = RHS
+
+```elixir
+[h, h] = [1, 1]
+```
+
+The code below it will work fine because its different variables bounding to same value.
+
+```elixir
+[a, b] = [1, 1]
+b
+```
+
+## Modules
+
+All code stays inside a module in elixir and accoding to my understation all our function will stay inside the module and module is collecion of functions . The code below shows how a module is defined and together with a function. Remember () are not mandotiry when doing the functions.
+
+```elixir
+defmodule Test do
+  def display(name) do
+    IO.puts("Hello welcome #{name}")
+  end
+end
+```
+
+Call your function using the module name plus together with the function name example below.
+
+```elixir
+Test.display("Hataluli")
+```
+
+Function without parameters Below:
+
+```elixir
+defmodule Testmode do
+  def funnopar do
+    IO.puts("Hello welcome to the bug world")
+  end
+end
+```
+
+Dont forget to call it out:
+
+```elixir
+Testmode.funnopar()
+```
