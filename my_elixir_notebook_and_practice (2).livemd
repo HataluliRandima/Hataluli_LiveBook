@@ -182,7 +182,20 @@ test1 = "Friday"
 "2 + 2 = #{2 + 2}"
 ```
 
-## Section
+## Charlist
+
+Its another data type and its syntax ' '. List for concaing is very different with one of strings because strings uses <> and now uses ++. Some examples below:
+
+```elixir
+# some variable to test and assign value of char
+test1 = 'hata'
+# concate of char
+'hello ' ++ test1
+```
+
+## List
+
+List in elixir are treated other way they are not just list but they are linked list (single linked list) and syntax for list is [] and put in mind that list undexing start at 0.
 
 ## More data types to come
 
