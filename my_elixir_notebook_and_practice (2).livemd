@@ -85,6 +85,7 @@ Function without parameters Below:
 
 ```elixir
 defmodule Testmode do
+  # the function without some parameters
   def funnopar do
     IO.puts("Hello welcome to the bug world")
   end
@@ -96,3 +97,9 @@ Dont forget to call it out:
 ```elixir
 Testmode.funnopar()
 ```
+
+## Data types
+
+In this section i will be unpacking data types according to how i understood them and all the data types in elixir are immutable
+
+## Atom
