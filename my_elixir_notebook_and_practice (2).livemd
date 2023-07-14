@@ -118,8 +118,20 @@ And they are mostly used for pattern matching.
 
 ## More data types to come
 
-## Section
+## Recursion
+
+Recursion the way i learnt previously its when a function calls itself and it keeps on calling it self if it doesnt have a way to stop it. So in elixir we will using recursion quite alot as we dont have for loops so recusion we will use it for ieration. I just created a project below to demostrate the way i understood a basic recursion function
 
 ```elixir
+# Created a basic project
+defmodule RecursionPractice do
+  def test_recursion do
+    IO.puts("Hello, Welcome to Tau Space!")
+    test_recursion()
+  end
+end
+```
 
+```elixir
+RecursionPractice.test_recursion()
 ```
