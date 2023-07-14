@@ -132,6 +132,8 @@ defmodule RecursionPractice do
 end
 ```
 
+My function above it just keep running because i didnt give it a condition to stop so for a recursive function its need to be given a condoton which is a base case.
+
 ```elixir
 RecursionPractice.test_recursion()
 ```
