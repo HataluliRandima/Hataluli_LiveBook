@@ -100,6 +100,18 @@ Testmode.funnopar()
 
 ## Data types
 
-In this section i will be unpacking data types according to how i understood them and all the data types in elixir are immutable
+In this section i will be unpacking data types according to how i understood them and all the data types in elixir are immutable ( meaning something that cant be changed like working with constants.)
 
 ## Atom
+
+Atoms they being defined as constants whose values are the same as their names or in another way atom is whose value its is own name. Syntax --> : , you start by calling when naming your atom. The example below.
+
+```elixir
+# Naming an atom 
+:right_now
+# OR
+:"right now"
+```
+
+Atoms we usually use them as reference status for a specific given request. One thing to master is that the name(variable) and value of that variable are always the same.
+And they are mostly used for pattern matching.
