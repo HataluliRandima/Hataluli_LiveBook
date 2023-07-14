@@ -145,6 +145,45 @@ name = "Hataluli"
 name
 ```
 
+## Pattern matching on Strings
+
+Showing some patern matching on strings some examples are below: and going to demostrate it with some string concatenation which simple mean that we are addings strings or combining them.
+
+```elixir
+# Having some string called Hataluli
+# Have a varible wchich will demos the pattern match
+"H" <> namemine = "Hataluli"
+
+# our string has bounded with the the first value which is H and remaining part is going to our variable
+namemine
+# To see our pattern match and doing some extracting of data
+"Hataluli" = "H" <> namemine
+```
+
+Some function to see if the value you have stored in a variable its a string.
+
+```elixir
+is_binary(namemine)
+```
+
+## String Interpolation
+
+I learnt string interpolation which is new thing to me. Which in simple term is placing some values inside or the middle of string by using whas will demosrate below and it works with any value being given even performing some operations:
+
+```elixir
+# using basic demostration of seeing any string
+
+test1 = "Friday"
+"Its #{test1}"
+```
+
+```elixir
+# performing some operations 
+"2 + 2 = #{2 + 2}"
+```
+
+## Section
+
 ## More data types to come
 
 ## Recursion
