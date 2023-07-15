@@ -112,7 +112,7 @@ Atoms they being defined as constants whose values are the same as their names o
 ```elixir
 # Naming an atom 
 :right_now
-# OR
+# OR with some multi-word
 :"right now"
 ```
 
