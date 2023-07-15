@@ -9,8 +9,11 @@ h = 3
 3 = h
 ```
 
-When doing the match operator always if your variable its on the left hand side, our elixir thinks we are assigning our variable with a new value and it doesnt keep track of that value. But you only stop that by using ^ , see the example below : 
+When doing the match operator always if your variable its on the left hand side, our elixir thinks we are assigning our variable with a new value and it doesnt keep track of that value. But you only stop that by using ^ , see the example below :
+
+<b>
 So i said k = 5  which its an error because k its already bounded to 4 and try to match 4 and 5 which is wrong on line 5
+</b>
 
 ```elixir
 k = 1
@@ -218,3 +221,5 @@ My function above it just keep running because i didnt give it a condition to st
 ```elixir
 RecursionPractice.test_recursion()
 ```
+
+dfbfdbdsbgdfngsdngnfg
