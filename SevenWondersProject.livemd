@@ -96,7 +96,8 @@ defmodule Seven do
   end
 
   # -------------------------- For ------------------------------
-
+  # For comprehension 
+  # Pattern mach extracting name variablr from the list of wonders
   def all_names() do
     for %{name: name} <- all(), do: name
   end
