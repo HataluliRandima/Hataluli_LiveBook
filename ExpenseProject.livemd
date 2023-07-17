@@ -166,5 +166,5 @@ end
 Calling our function to see if the user does exist by login func
 
 ```elixir
-
+Test.login("Coco", 1234)
 ```
