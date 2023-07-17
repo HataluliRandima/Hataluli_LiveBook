@@ -71,11 +71,6 @@ defmodule Mean do
 
   def population_mean(_), do: Errors.invalid_data_type()
 
-  @spec validate_num_list([number()]) :: {boolean(), [number()]}
-  def validate_num_list(nums) do
-    {Enum.all?(nums, fn el -> is_number(el) end), nums}
-  end
-
   # ====================================================================
 
   @spec sample_mean([number()]) :: number() | {:error, String.t()}
@@ -83,6 +78,7 @@ defmodule Mean do
 
   # ====================================================================
 
+  # function to calculate our population mean
   defp calc_population_mean({false, _}), do: Errors.invalid_data_type()
 
   defp calc_population_mean({true, nums}) do
@@ -99,4 +95,8 @@ defmodule Mean do
 
   # ====================================================================
 end
+```
+
+```elixir
+Mean.population_mean([10, 20, 30])
 ```
