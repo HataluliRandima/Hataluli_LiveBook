@@ -200,9 +200,48 @@ test1 = 'hata'
 
 List in elixir are treated other way they are not just list but they are linked list (single linked list) and syntax for list is [] and put in mind that list undexing start at 0.
 
+```elixir
+list = [1, 2, 3]
+list
+```
+
+To extract values in a list we have to do pattern matching , see the example below
+
+```elixir
+# create some list
+[first, second, third] = list
+# The above elemets will bound with valuest from prev list
+second
+```
+
+## Tuple
+
+They are represented by {} and can have two or more elements inside it.Tuple are very similar to arrays and all data inside tuple is saved contionously inside the memory.
+
+## Maps
+
+Maps data type it uses this syntax % { } and they are key and value kind data structure. Inside maps we can have different data types.
+
+```elixir
+# using atoms as a key
+my_map = %{a: 1, b: 2, c: 3}
+my_map
+```
+
+```elixir
+%{a: first, b: second, c: third} = my_map
+third
+```
+
+Pattern matching on maps
+
 ## More data types to come
 
 ## Recursion
+
+```elixir
+
+```
 
 Recursion the way i learnt previously its when a function calls itself and it keeps on calling it self if it doesnt have a way to stop it. So in elixir we will using recursion quite alot as we dont have for loops so recusion we will use it for ieration. I just created a project below to demostrate the way i understood a basic recursion function
 
