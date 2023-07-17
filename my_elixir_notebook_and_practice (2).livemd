@@ -112,7 +112,7 @@ Atoms they being defined as constants whose values are the same as their names o
 ```elixir
 # Naming an atom 
 :right_now
-# OR with some multi-word
+# OR
 :"right now"
 ```
 
@@ -217,6 +217,31 @@ second
 ## Tuple
 
 They are represented by {} and can have two or more elements inside it.Tuple are very similar to arrays and all data inside tuple is saved contionously inside the memory.
+
+```elixir
+# example of tuple 
+{1, 2}
+# Doing some patern amtch
+{a, b} = {1, 2}
+a
+```
+
+```elixir
+# Example on 3 elements tuple
+
+{:reply, msg, state} = {:reply, "Bug founded", ["a", "b", "c"]}
+msg
+```
+
+## Keyword List
+
+Is actual a list but inside that list we have the key and the value pairs. Some example below:
+
+```elixir
+# declare var data and assign it to your list
+
+data = [a: 1]
+```
 
 ## Maps
 

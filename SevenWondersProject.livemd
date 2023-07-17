@@ -1,0 +1,134 @@
+# Untitled notebook
+
+## Seven Wonders project
+
+Through vs code create a folder inside the lib dir and create your file called seven.ex
+In this project the main thing w will be using is struct.
+
+```elixir
+# Create a module
+defmodule Seven do
+  # creating struct
+
+  defstruct name: "", country: ""
+  # creating my alias as the name is too long for the struct
+  # alias Firstproject.Lists.Seven
+
+  # defining type specification of my struct for those fields
+  # definig types of your fields
+  @type t :: %Seven{
+          name: String.t(),
+          country: String.t()
+        }
+
+  # -------------------------- All ------------------------------
+
+  # create list of all those seven wonders intialising my struct on funct that return list
+  # do type specification for this function line 21
+  # intialise my list 
+  # another way to intialise using if its only one data for struct!
+  # wonder = %Seven{name: "name f ", country: "India"},
+  @spec all :: [t()]
+  def all() do
+    [
+      %Seven{name: "name f ", country: "India"},
+      %Seven{name: " name g", country: "mexico"},
+      %Seven{name: "name d ", country: "jordan"},
+      %Seven{name: " name j", country: "peru"},
+      %Seven{name: "name kk ", country: "brazil"},
+      %Seven{name: " name u", country: "italy"},
+      %Seven{name: "name m ", country: "china"}
+    ]
+  end
+
+  # firtsly from terminal assign your intialising of those srunct to a variable that ypu will use on ither funct
+  # all_worders = all
+  # then use all_wonders as param o other func and its a list
+
+  # usage of standard library functions
+  # h Enum. from terminal enum its enable
+
+  # this function is for printing all names of the seven wonders
+  @spec print_names([t()]) :: :ok
+  def print_names(wonders) do
+    # it receives list (which is enum) and func as parameters and func has end block
+    # some pattern match using map
+    Enum.each(wonders, fn %{name: name} -> IO.puts(name) end)
+  end
+
+  @spec filter_by_country([t()], String.t()) :: [t()]
+  def filter_by_country(wonders, country) do
+    wonders
+    # extracting thr coutry name by pattern match
+    |> Enum.filter(fn %{country: country_name} -> country_name == country end)
+  end
+
+  #  Seven.filter_by_country(all_wonders, "India") for test above
+
+  # function to compare values to see if the argument start with specific letter
+  # its a filtering function
+  # comparing the first letter of variable with i
+  @spec in_countries_starting_with_i([t]) :: [String.t()]
+  def in_countries_starting_with_i(wonders) do
+    wonders
+    |> Enum.filter(fn %{country: country} -> String.starts_with?(country, "I") end)
+  end
+
+  # function to sort all countiers depending to its lenght
+  # Checking its characters th eone with few characters on country name it comes first
+  @spec sort_by_country_length([t]) :: [t()]
+  def sort_by_country_length(wonders) do
+    wonders
+    |> Enum.sort(fn x, y -> String.length(x.country) < String.length(y.country) end)
+  end
+
+  # 
+  @spec name_country_list([t()]) :: [any()]
+  def name_country_list(wonders) do
+    wonders
+    |> Enum.reduce([], fn wonder, acc -> [[wonder.name, wonder.country] | acc] end)
+  end
+
+  @spec country_name_keyword_list([t()]) :: Keyword.t()
+  def country_name_keyword_list(wonders) do
+    wonders
+    |> Enum.reduce([], fn wonder, acc -> [{String.to_atom(wonder.country), wonder.name} | acc] end)
+  end
+
+  # -------------------------- For ------------------------------
+
+  def all_names() do
+    for %{name: name} <- all(), do: name
+  end
+end
+```
+
+Firstly assigning my list of sample data from all function to a variable.
+
+```elixir
+all_wonders = Seven.all()
+```
+
+The calling of the print names function.
+
+```elixir
+Seven.print_names(all_wonders)
+```
+
+Calling of filter function
+
+```elixir
+Seven.filter_by_country(all_wonders, "India")
+```
+
+Function to check if the given variable start with a specific letter which is I
+
+```elixir
+Seven.in_countries_starting_with_i(all_wonders)
+```
+
+Function for sorting contry by its length how long it is ?
+
+```elixir
+Seven.sort_by_country_length(all_wonders)
+```
