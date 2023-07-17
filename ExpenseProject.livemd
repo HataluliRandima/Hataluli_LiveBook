@@ -24,6 +24,7 @@ defmodule Expense do
           store: String.t()
         }
   # intialise your struct give them sove values
+  @spec sample :: [t()]
   def sample do
     [
       %Expense{title: "Heloo ", date: ~D[2022-09-12], amount: 18.99, store: "Metro"},
@@ -39,18 +40,131 @@ defmodule Expense do
   # function for total amount we have spent it take list as param
   # it returns total amount
   # on the reduce we are intialise acc to zero
+  # usage of piping 
   @spec total([t]) :: number()
   def total(expenses) do
     expenses
     |> Enum.reduce(0, fn expense, acc -> expense.amount + acc end)
   end
+
+  # sorting by date our expenses
+  # all of them we are using helper function from enable 
+  # using anym funct and doing some referenc to it 
+  @spec sort_by_date([t]) :: [t()]
+  def sort_by_date(expenses) do
+    expenses
+    |> Enum.sort_by(& &1.date)
+  end
+
+  # pattern match for our struct enforce that type of this expense should be from our struct
+  # adding new expense to existing one 
+  # Before running this command firstly create new aexpense\
+  # Then you can pass it to the function
+  @spec add_expense(t) :: [t()]
+  def add_expense(%Expense{} = expense) do
+    # adding your expense to the head or first on the list
+    # appendig to our new exsting sample
+    [expense | sample()]
+  end
+
+  # create a variable for expense that you want to pass
+  # expense = %Expwnse{title: " ",date}
+  # And give the expense you want to add to your list that already available
+
+  # updating the amount
+  # filter the expense ned to update
+  # create new expense with updated amount
+  # Add that expense to our sample and remove the old entries
+  # expense_title new variable for pattern match
+  @spec update_amount(String.t(), number()) :: [t()]
+  def update_amount(title, amount) do
+    # extract title value
+    # create new list
+    [item] = Enum.filter(sample(), fn %{title: expense_title} -> expense_title == title end)
+    # uodating the value of amount
+    # creating new item
+    new_item = %{item | amount: amount}
+
+    # deleting our prev item
+    [new_item | sample() |> List.delete(item)]
+  end
 end
 ```
+
+Assigning our all_expense variable to a list of our sample of expense.
 
 ```elixir
 all_expense = Expense.sample()
 ```
 
+Functions that takes expenses as paramater and calculate all the expnses and return them
+
 ```elixir
 Expense.total(all_expense)
+```
+
+For adding new expense to an existing sample of expenses firstly you have to create that expense.
+
+```elixir
+# adding that expense have a var and initialise our struct!
+
+expense = %Expense{title: "Coffee", date: ~D[2023-04-01], amount: 10, store: "Metro"}
+```
+
+Add your expense or append it to your existing one by using this funcion and this add it on top of the list or the head
+
+```elixir
+Expense.add_expense(expense)
+```
+
+Updating our specific item in our list update its price using the following function.
+
+```elixir
+Expense.update_amount("Mobile", 33)
+```
+
+## With Statements
+
+Working with web applications with statements become very useful.
+
+```elixir
+# -------------------------- With statements ------------------------------
+
+defmodule Test do
+  # dummy database for users
+  # creating our own custom module attribute
+  # creating different users
+  @users ["Coco", "Cece", "Louis", "Chiko"]
+
+  # This are like helper functions they execute first
+  # using function guards when user in @users
+  # dummy function for aunthetication check if data is stored
+  def authenticate(user) when user in @users, do: {:ok, "authorized"}
+  # user doesnt exist 
+  def authenticate(_), do: {:error, "unauthorized"}
+
+  # this function for dont work much because we dont have passwords stored
+  def verify_password(user, _password) when user in @users, do: {:ok, "password verified"}
+  # dont match no need of guard
+  def verify_password(_user, _password), do: {:error, "wrong password"}
+
+  # the usage of with syntax
+  # check first if we satsify this condition using the arrow
+  def login(user, password) do
+    with {:ok, _auth_msg} <- authenticate(user),
+         {:ok, _msg} <- verify_password(user, password) do
+      {:ok, "#{user} logged in successfully"}
+    else
+      {:error, msg} -> {:error, msg}
+      # default condition
+      _ -> :unauthorized
+    end
+  end
+end
+```
+
+Calling our function to see if the user does exist by login func
+
+```elixir
+
 ```
