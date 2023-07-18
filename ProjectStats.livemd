@@ -121,6 +121,7 @@ Now doing median part
 
 ```elixir
 defmodule Median do
+  # for using integers we have to require it 
   require Integer
 
   alias Errors
@@ -178,14 +179,33 @@ defmodule Median do
 
   # ====================================================================
 
+  # to avoid return of float we use div(num, 2) using enable funciton
+  # This is for when our given list is odd
   defp get_median(num_list, false, count), do: Enum.at(num_list, div(count, 2))
 
   # it takes diff params to check for even or odd
+  # This is for even scenario
   defp get_median(num_list, true, count) do
+    # for this func using two different scenario another one is for odd and even
+
+    # This two variable is for holding a value from the centre
     a = Enum.at(num_list, div(count - 1, 2))
     b = Enum.at(num_list, div(count, 2))
 
+    # to find a median value from two values 
     (a + b) / 2
   end
 end
+```
+
+Then calling our median function with some list as our parameters which are even numbers.
+
+```elixir
+Median.median([10, 40, 20, 50, 30, 90, 70, 60, 80])
+```
+
+Calling our median function with list of odd numbers.
+
+```elixir
+Median.median([10, 40, 20, 50, 30, 70, 60, 80])
 ```
