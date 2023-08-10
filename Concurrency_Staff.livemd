@@ -1,0 +1,116 @@
+# Processes notebook
+
+## Processes
+
+The basic unit of concurrency in Elixir is the process. They are lightweight.Building blocks of concurrecy.
+See the memory of your process.
+
+```elixir
+spawn(fn -> IO.puts("Hello, World!") end)
+|> Process.info(:memory)
+```
+
+## Spawn
+
+For creating process we use spawn/1 or spawn/3 functions.
+The former accepts an anonymous function as its argument (as we’ve just seen), while the latter takes a Module, function name, and a list of arguments (MFA). In both cases, spawn returns the <b> PID (Process ID) </b> to the calling process.
+
+```elixir
+# For example 
+spawn(fn -> loop() end)
+# FOr example for another one
+spawn(ExamplePassing, :messagepass, [])
+```
+
+```elixir
+pid = spawn(fn -> IO.puts("Hello, Alpha Centauri!") end)
+pid
+```
+
+```elixir
+spawn(IO, :puts, ["Hello, Alpha Centauri!"])
+```
+
+Elixir spawns a new process and executes the specified function inside it, but that’s all it does. There’s no return value beside the PID; there’s no success or failure message; the child process can only perform its given task; and once started, the parent process has no idea what’s going on inside the child process (to which I can completely relate).
+
+## Message Passing
+
+As part of the actor model, processes are able to communicate with other processes via “messages”. The receiving processes can return messages in kind or send messages to still other processes.
+
+## Send
+
+Sending messages to processes in Elixir is easy. All we need is the process ID (PID) and a message to send. We can try this out in IEx:
+
+```elixir
+send(self(), :hi)
+```
+
+What we’ve done here is send the message, :hi, to our current IEx session. The send/2 function returns the message we sent, but nothing else appears to have happened. Where did the message go? Did it disappear into the void? Was it sent to /dev/null? Did it “run down the curtain and [join] the bleedin’ choir invisible”? Or is it stored somewhere? The answer, as you may have guessed, is that messages are stored in the process mailbox until the process “receives” them. We can see that using <b> Process.info/2 </b>
+
+```elixir
+Process.info(self(), :messages)
+```
+
+To retrieve the message from the IEx process’s mailbox, we need to “receive” it, with the <b>receive/1 </b>macro:
+
+```elixir
+receive do
+  :hi -> IO.puts("Hello.")
+end
+```
+
+```elixir
+# To see messages on the mailbox
+Process.info(self(), :messages)
+```
+
+The receive/1 function matches against the :hi atom, and, once matched, executes the corresponding function. What do you think would happen if we tried running our receive function again?
+
+If you were to run the receive function again, your IEx session would hang until terminated, which is why it’s a good idea to include an after clause when working with receive/1.
+
+```elixir
+defmodule Salutator do
+  def run do
+    receive do
+      {:hi, name} ->
+        IO.puts("Hi, #{name}")
+
+      {_, name} ->
+        IO.puts("Hello, #{name}")
+    end
+
+    # <- Recursion FTW!
+    run()
+  end
+end
+```
+
+```elixir
+# Start our process
+pid = spawn(Salutator, :run, [])
+```
+
+```elixir
+# Send some messages 
+send(pid, {:hi, "Mark"})
+```
+
+```elixir
+# Checking for other conditions if it matches 
+send(pid, {:hello, "Suzie"})
+```
+
+## The Process Mailbox
+
+We saw previously that messages are stored in a process’s mailbox until it’s able to receive them. But why send messages to a process’s mailbox instead of calling the function directly? According to the Elixir guide on processes, “The process that sends the message does not block on send/2, it puts the message in the recipient’s mailbox and continues.” The receiving process is then able to process messages from its mailbox according to its capacity, without needing to communicate its progress to the originating process, and without hindering the caller’s progress.
+
+<!-- livebook:{"break_markdown":true} -->
+
+<b>
+Take the first message from the mailbox.
+Try to match it against any of the provided patterns, going from top to bottom.
+If a pattern matches the message, run the corresponding code.
+If no pattern matches, put the message back into the mailbox at the same position it originally occupied. Then try the next message.
+If there are no more messages in the queue, wait for a new one to arrive. When a new message arrives, start from step 1, inspecting the first message in the mailbox.
+If the after clause is specified and no message is matched in the given amount of time, run the code from the after block. </b>
+</b>

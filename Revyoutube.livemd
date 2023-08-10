@@ -1,0 +1,778 @@
+# Untitled notebook
+
+## Revision
+
+Revision for tommorow test, Hata you can make you know that uri you are the best boy.
+
+## Data Types
+
+## Integers
+
+Its whole numbers they can be positive and negatives
+
+```elixir
+1
+```
+
+```elixir
+5 + 6
+```
+
+```elixir
+14 / 7
+```
+
+## Float
+
+```elixir
+# Numbers containing decimal ppoints
+
+5.13
+```
+
+## Strings
+
+Represented by double quotes and you can have numbers insde but cant to some arithmetics operations
+
+```elixir
+"Hello"
+```
+
+```elixir
+name = "Hataluli"
+name
+```
+
+```elixir
+"Hata33"
+```
+
+```elixir
+# using special func to print out 
+
+IO.puts("Hello octalium")
+```
+
+## String interpolation
+
+The processs of attaching other variables inside a string
+
+```elixir
+name = "Hata"
+message = "Hello #{name}"
+message <> " tommorow you can make it"
+```
+
+```elixir
+# you can do some arithmetic operations here 
+
+"#{4 + 5} is the total"
+```
+
+## String concatenation
+
+Adding of strings it can be two or more
+
+```elixir
+name = "Hata"
+message = "Hello "
+total = name <> " " <> message
+```
+
+## Boolean
+
+Booleans are logical expressions, they can be true or false
+
+```elixir
+true
+```
+
+```elixir
+false
+```
+
+## Atom
+
+Atoms are symbol that the value is its name.
+
+```elixir
+:green
+```
+
+```elixir
+:status
+```
+
+## List
+
+list are actual a single linked list in elixir .
+List is a collection of any data types
+
+```elixir
+# Some examples of list 
+
+my_list = [12, "my name", :atom, true, 3.14]
+```
+
+```elixir
+# list of numbers
+list = [1, 2, 3, 4, 5]
+```
+
+```elixir
+# list of strings 
+colors = ["blue", "green"]
+```
+
+```elixir
+# Adding on list or appending in the first value or the head 
+value = 0
+
+[value | list]
+```
+
+```elixir
+# Adiing value on the list from the back or tail side 
+# Concanate 
+
+list ++ [6, 7, 8]
+```
+
+## Tuple
+
+Tuples are a fast way to create collection of items . syntax {}
+
+```elixir
+result = {:ok, :ok}
+```
+
+```elixir
+{:ok, "Hello"}
+```
+
+## Map
+
+Maps are collections of data stored in key value pairs. %{}
+
+```elixir
+employee = %{"name" => "", "surname" => ""}
+employee["name"]
+```
+
+```elixir
+# updating values of my map 
+john = %{employee | "name" => "hataluli", "surname" => "randima"}
+
+# outputing the value of specific key 
+john["name"]
+```
+
+```elixir
+# maps using atoms 
+letters = %{:a => "A", :b => "B", :c => "C"}
+letters.c
+```
+
+```elixir
+
+```
+
+## Members operator
+
+```elixir
+# Checking if the the element on left is inside the list or not
+
+1 in [1, 2, 3]
+```
+
+```elixir
+0 not in [1, 2, 3]
+```
+
+## Pattern matching
+
+Is the act of strict comparison of 2 values
+
+## Match operator =
+
+```elixir
+# we are binding values here 
+a = 1
+1 = a
+```
+
+```elixir
+2 = a
+```
+
+```elixir
+{:ok, value} = {:ok, "value11"}
+value
+```
+
+```elixir
+{:ok, "value1"} = {:ok, value}
+```
+
+## Pin operator ^
+
+it access variables that a;ready have value , allowing us to avoid rebinding a variable with an existing value .
+
+```elixir
+a = 1
+a = 2
+```
+
+```elixir
+^a = 3
+```
+
+```elixir
+value = "value11"
+{:ok, ^value} = {:ok, "value11"}
+```
+
+```elixir
+{:ok, ^value} = {:ok, "value11fef"}
+```
+
+## Discard Values with _ underscore
+
+if you dont want to capture a value you can use special variable _
+
+```elixir
+{a, b} = {"a", "b"}
+```
+
+```elixir
+# showiing of not capturing of the value of the special variable c 
+{a, b, _} = {"a", "b", "c"}
+```
+
+```elixir
+{a, b, _} = {"a", "b"}
+```
+
+## Conditionals
+
+## If and unless
+
+same as if statement on how it works
+
+```elixir
+color = "green"
+
+if color == "blue" do
+  IO.puts("NO")
+else
+  IO.puts("Yes")
+end
+```
+
+```elixir
+if color == "green", do: "Yes", else: "Hata"
+```
+
+## Case
+
+Its used when we need to match against multiple patterns
+
+```elixir
+result = {:ok, "success"}
+
+case result do
+  # you can even put that string there 
+  {:ok, result} -> "Its going down"
+  {:error, error} -> "Its going up"
+  _ -> "Its going down11"
+end
+```
+
+```elixir
+result = {:error, "success"}
+# dont forget the rule of an atom 
+case result do
+  # you can even put that string there 
+  {:ok, result} -> "Its going down"
+  {:error, error} -> "Its going up"
+  _ -> "Its going down11"
+end
+```
+
+```elixir
+result = {"success"}
+# dont forget the rule of an atom 
+case result do
+  # you can even put that string there 
+  {:ok, result} -> "Its going down"
+  {:error, error} -> "Its going up"
+  _ -> "Its going down11"
+end
+```
+
+## Cond
+
+This one is used to match againts conditions instead of values
+
+```elixir
+color = "green"
+
+cond do
+  color == "blue" -> color
+  color == "green" -> "hello"
+  color == "black" -> color
+end
+```
+
+```elixir
+color = "color"
+
+cond do
+  color == "blue" -> color
+  color == "green" -> "hello"
+  color == "black" -> color
+  true -> " this is not available here #{color}"
+end
+```
+
+## With
+
+This is usefully if we need more than one match for the code to be executed.
+
+```elixir
+result = {:ok, "result"}
+error = {:error, "error"}
+
+# some pattern match here remember what you have assigned the result 
+# got executed on if it matches 
+with {:ok, result} <- result do
+  result
+end
+```
+
+```elixir
+# remember only get executed if it matches 
+with {:ok, result} <- result,
+     {:error, error} <- error do
+  "Ots"
+end
+```
+
+## Anonymous functions
+
+We can use them when we want to group a block of code that can analyze data.
+
+```elixir
+# assigning our func to a variable sum
+sum = fn a, b -> a + b end
+sum
+```
+
+```elixir
+# calling the anony 
+sum.(2, 3)
+```
+
+```elixir
+sum = &(&1 + &2)
+sum.(2, 3)
+```
+
+```elixir
+# funct that take var name 
+
+output = fn name -> "Hello #{name}" end
+output
+```
+
+```elixir
+# calling that function 
+output.("hata")
+```
+
+```elixir
+output = &"Hello #{&1}"
+output.("hata")
+```
+
+## Pattern match with anym funct
+
+```elixir
+handle_req = fn
+  {:ok, result} -> result
+  {:error, error} -> error
+end
+```
+
+```elixir
+handle_req.({:ok, "Success"})
+```
+
+```elixir
+handle_req.({:error, "error"})
+```
+
+## Modules
+
+```elixir
+defmodule Math do
+  def sum(num1, num2) do
+    num1 + num2
+  end
+end
+
+Math.sum(5, 2)
+```
+
+```elixir
+defmodule Greet do
+  def output(name) do
+    greeting(name)
+  end
+
+  # declaring some private functios
+  defp greeting(name) do
+    "Hello " <> " " <> name
+  end
+end
+
+Greet.output("Hata")
+```
+
+## Modules attributes
+
+Are used as constants throuiut our module
+
+```elixir
+defmodule Greetings do
+  @name "Hata"
+
+  def hello(), do: "Hello #{@name}"
+  def hata(), do: "Hello #{@name}"
+end
+
+Greetings.hello()
+```
+
+## Module documentations
+
+```elixir
+defmodule  Hata do
+  
+  @moduledoc"""
+
+  """
+
+  @doc""""
+  
+  """
+  def hata do
+    
+  end
+end
+```
+
+## Structs
+
+Are specials maps with a defined set of keys and default values. A struct must be defined within a module, which it takes its name from.
+define struct with defstruct  along with a key wordlist of fields and default vaues
+
+```elixir
+defmodule User do
+  defstruct [:name, :age]
+end
+```
+
+```elixir
+ume = %User{age: 23}
+ume.age
+```
+
+```elixir
+# Some pattern match on struct! extracting of value oother way
+%{age: minwaha} = ume
+minwaha
+```
+
+```elixir
+# change the value of age 
+%{ume | age: 24}
+```
+
+## alias
+
+used to alias modules names when we need to use them within other modules.
+
+```elixir
+defmodule Display.Result do
+  def math(result) do
+    "your guy is #{result}"
+  end
+end
+
+defmodule Math1 do
+  alias Display.Result
+
+  def sum(num1, num2) do
+    num1 + num2
+  end
+
+  def show() do
+    result = sum(1, 2)
+    Result.math(result)
+  end
+
+  def showall() do
+    result = sum(1, 2)
+    Display.Result.math(result)
+  end
+end
+```
+
+```elixir
+# we can even assign specific name on alias 
+
+defmodule Math112 do
+  alias Display.Result, as: Show
+
+  def sum(num1, num2) do
+    num1 + num2
+  end
+
+  def show() do
+    result = sum(1, 2)
+    Show.math(result)
+  end
+end
+```
+
+```elixir
+# we can even alias multiople modules in one line 
+```
+
+## Import
+
+we use import to import functions from other modules to call them without referring to tthe module , just calling the name of the function
+
+```elixir
+defmodule Importexa do
+  import Math112
+
+  def import_din(num1, num2) do
+    sum(num1, num2)
+  end
+end
+
+Importexa.import_din(2, 3)
+```
+
+## Functions Arguments
+
+```elixir
+defmodule Say do
+  # intialise our greet arhumrn r already assigning
+  def hello(name, last, greet \\ "Hello") do
+    "#{greet} #{name}"
+  end
+end
+
+Say.hello("Hata", "dd")
+```
+
+## Useful modules & Built In Functions
+
+## to_string(integer)
+
+```elixir
+Integer.to_string(2)
+```
+
+## String
+
+```elixir
+# capatalize 
+String.capitalize("a")
+# tou downcase
+String.downcase("A")
+# to upcase
+String.upcase("kl")
+# contains functions contai(string,content)
+String.contains?("abc", "d")
+# split string  based onn white space
+String.split("a bc")
+# split using pattern
+String.split("a-b-c", "-")
+# length of string
+String.length("hata")
+# triming 
+String.trim("     ab c   ")
+# repalce string 
+String.replace("abc", "a", "d")
+# reverse string
+String.reverse("hata")
+```
+
+## List
+
+```elixir
+# first list
+list = [1, 2, 3]
+List.first(list)
+
+# last on list
+List.last(list)
+
+# convert to string
+List.to_string(list)
+```
+
+## Map
+
+```elixir
+# put into map
+map = %{"a" => "A", "b" => "B"}
+Map.put(map, "c", "C")
+
+# put new value to the key already exist
+Map.put_new(map, "b", "P")
+
+# check if the map has key 
+Map.has_key?(map, "a")
+
+# get all values on the map
+Map.values(map)
+
+# delete some key
+Map.delete(map, "a")
+```
+
+## Enum module
+
+```elixir
+# to see for each 
+lisr = [1, 2, 3]
+Enum.each(lisr, fn x -> IO.puts(x) end)
+```
+
+```elixir
+# enum for map to add numbers of the list of each elemtn
+Enum.map(lisr, fn x -> x + 1 end)
+```
+
+```elixir
+# into ading a key and value inside map using the enum
+Enum.into(map, %{"g" => "G"})
+```
+
+```elixir
+# return true if fun elements is truth for all elements in enumrable
+# verifying if all our is 
+Enum.all?(lisr, fn x -> is_integer(x) end)
+```
+
+```elixir
+# to see if any of the elemets is ataleast one element
+Enum.any?(lisr, fn x -> x == 1 end)
+```
+
+```elixir
+# filter pn the list returning that value if there from the elements 
+Enum.filter(lisr, fn x -> x == 1 end)
+```
+
+```elixir
+# list converting our map to list 
+Enum.to_list(map)
+```
+
+```elixir
+# shuffle our list
+Enum.shuffle(lisr)
+```
+
+```elixir
+# get a random numer from a list
+Enum.random(1..10)
+```
+
+```elixir
+# adding / sum all numbers from list
+Enum.sum(lisr)
+```
+
+```elixir
+# getting unique numbers repetiotion
+Enum.uniq([1, 1, 2, 2, 3, 3])
+```
+
+```elixir
+# take a random number 
+```
+
+```elixir
+# the lenght of the list
+length(lisr)
+```
+
+```elixir
+# to return an inteer when given float
+trunc(2.33)
+```
+
+```elixir
+hd(lisr)
+```
+
+```elixir
+tl(lisr)
+```
+
+```elixir
+de
+```
+
+## Pipe Operator
+
+## It passes the result of an expression as first argument/parameter of another expression
+
+```elixir
+string = "h Mine "
+
+string
+|> String.downcase()
+# removing white spaces 
+|> String.trim()
+|> String.split()
+|> Enum.join("-")
+```
+
+```elixir
+import List
+numbers = [2, 3, 4, 5, 6]
+numbers
+[h | t] = numbers
+h
+t
+List.insert_at(numbers, 5, 9)
+```
+
+```elixir
+new = 9
+list = [1, 2, 3]
+[new | list]
+```
+
+```elixir
+%{"a" => var, 3 => var1} = %{"a" => :one, 3 => "ff"}
+var1
+```
+
+## Map
+
+```elixir
+map1 = %{"a" => 1, "b" => 2}
+
+for {e, t} <- map1 do
+  e
+end
+```
