@@ -1,0 +1,25 @@
+# Supervisors notebook
+
+## OTP Supervisors
+
+Supervisors are specialized processes with one purpose: <b>monitoring other processes</b>.
+
+These supervisors enable us to create fault-tolerant applications by automatically restarting child processes when they fail.
+
+Supervisors <b> monitor other processes </b> and can restart them if they crash. They ensure the system's resilience. Strategies for fault tolerance Child specifications
+
+## TP Supervisors
+
+Supervisors are specialized processes that monitor other processes, called child processes.
+If a child process crashes, the supervisor can restart it, allowing for fault tolerance and resilience.
+Supervisors work according to different strategies to decide how to restart child processes.
+
+## Strategies for Fault Tolerance
+
+* <b>One for One:</b> If a child process dies, only that process is restarted.
+* <b>One for All:</b> If one child process dies, all other child processes are restarted.
+* <b>Rest for One:</b> If a child process dies, the rest of the processes started after it are restarted.
+
+## Child Specifications
+
+Child specifications define how a child process is started, how often it should be restarted, and other settings.
