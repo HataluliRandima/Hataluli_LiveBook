@@ -10,7 +10,82 @@ A supervision tree is a hierarchical structure of supervisors and worker process
 These define how the supervisor will react to child failures.
 </b>
 
-* :one_for_one: If a child process terminates, only that process is
+* <b>:one_for_one:</b> If a child process terminates, only that process is
   restarted.
-* :one_for_all: If a child process terminates, all other child processes are terminated and restarted.
-* :rest_for_one: If a child process terminates, the rest of the children started after it are terminated and restarted.
+* <b>:one_for_all:</b> If a child process terminates, all other child processes are terminated and restarted.
+* <b>:rest_for_one:</b> If a child process terminates, the rest of the children started after it are terminated and restarted.
+
+## Exercise
+
+Identify suitable scenarios for each restart strategy.
+
+## 1. :one_for_one Strategy
+
+This strategy restarts only the failed child process. It is suitable for scenarios where child processes are independent of one another.
+
+Example Scenario:
+
+In a web server, where each worker process handles an independent client request. If one request fails, it should not affect the other requests.
+
+## 2. :one_for_all Strategy
+
+This strategy restarts all child processes if one fails. It's suitable for scenarios where all child processes are tightly coupled and dependent on one another.
+
+Example Scenario:
+
+In a distributed database cluster, if one node fails, it might cause inconsistency across other nodes. Restarting all nodes ensures that they are <b>synchronized and consistent.
+
+## 3. :rest_for_one Strategy
+
+This strategy restarts the failed child process and any process started after it. It's suitable for scenarios where some child processes depend on others, but not all of them.
+
+Example Scenario:
+
+In a multi-stage data processing pipeline, if one stage fails, all subsequent stages that depend on it must be restarted, but previous stages can continue to run.
+
+## Configuration
+
+
+
+## Child Specification
+
+After the supervisor has started it must know how to <b>start/stop/restart</b> its children.
+
+* Each child module should have a child_spec/1 function to define these behaviors.
+* The use GenServer, use Supervisor, and use Agent macros automatically define this method for us (SimpleQueue has use GenServer, so we do not need to modify the module), but if you need to define it yourself child_spec/1 should return a map of options:
+
+```elixir
+# this how you can child specification
+def child_spec(opts) do
+  %{
+    id: SimpleQueue,
+    start: {__MODULE__, :start_link, [opts]},
+    shutdown: 5_000,
+    restart: :permanent,
+    type: :worker
+  }
+end
+```
+
+* id - Required key. Used by the supervisor to identify the child specification.
+
+* start - Required key. The Module/Function/Arguments to call when started by the supervisor
+
+* shutdown - Optional key. Defines child’s behavior during shutdown.
+
+Options are:
+
+* :brutal_kill - Child is stopped immediately
+* 0 or a positive integer - time in milliseconds supervisor will wait before killing child process. If the process is a :worker type, shutdown defaults to 5000.
+* :infinity - Supervisor will wait indefinitely before killing child process. Default for -- - :supervisor process type. Not recommended for :worker type.
+
+restart - Optional key.
+
+There are several approaches for handling child process crashes:
+
+* :permanent - Child is always restarted. Default for all processes
+* :temporary - Child process is never restarted.
+* :transient - Child process is restarted only if it terminates abnormally.
+* type - Optional key. Processes can be either :worker or :supervisor. Defaults to :worker.
+
+## DynamicSupervisor
