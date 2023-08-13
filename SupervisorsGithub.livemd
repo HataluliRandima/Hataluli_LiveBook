@@ -109,4 +109,14 @@ DynamicSupervisor.start_link(options)
 
 ## Task Supervisor
 
+The Task.Supervisor specializes in supervising short-lived tasks.
+
+```elixir
+#Example Running a background job to send email notifications:
+
+{:ok, pid} = Task.Supervisor.start_child(MyApp.TaskSupervisor, fn -> send_emails end
+```
+
+## Section
+
 It will be done on vs code
