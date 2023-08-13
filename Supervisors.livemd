@@ -27,6 +27,8 @@ Child specifications define how a child process is started, how often it should 
 
 ## Example on fault tolerance :
 
+This code snippet illustrates a simple supervisor (MySupervisor) that monitors a worker (MyWorker). If MyWorker crashes, it will be restarted by the supervisor, following the <b>:one_for_one strategy.</b>
+
 ```elixir
 defmodule MyWorker do
   use GenServer
@@ -64,5 +66,33 @@ end
 ```
 
 ```elixir
+# started my Supervisor
 MySupervisor.start_link([])
 ```
+
+```elixir
+# called the child my worker
+MyWorker.increment()
+```
+
+```elixir
+# To see the children i have on my supervisor
+Supervisor.which_children(MySupervisor)
+```
+
+```elixir
+# shutdown the process
+Process.exit(pid, :shutdown)
+```
+
+```elixir
+Supervisor.which_children(MySupervisor)
+```
+
+```elixir
+MyWorker.increment()
+```
+
+## Exercise
+
+it will be done on vs code

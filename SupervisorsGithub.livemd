@@ -1,0 +1,5 @@
+# Supervisors notebook from avi
+
+## Supervision Trees
+
+A supervision tree is a hierarchical structure of supervisors and worker processes. Supervisors can oversee other supervisors, creating a tree-like structure that enhances fault tolerance
