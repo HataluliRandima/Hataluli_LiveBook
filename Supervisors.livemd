@@ -10,9 +10,10 @@ Supervisors <b> monitor other processes </b> and can restart them if they crash.
 
 ## TP Supervisors
 
-Supervisors are specialized processes that monitor other processes, called child processes.
-If a child process crashes, the supervisor can restart it, allowing for fault tolerance and resilience.
-Supervisors work according to different strategies to decide how to restart child processes.
+Supervisors are specialized processes that monitor other processes, <b>called child processes.</b>
+
+* If a child process crashes, the supervisor can restart it, allowing for fault tolerance and resilience.
+* Supervisors work according to different strategies to decide how to restart child processes.
 
 ## Strategies for Fault Tolerance
 
@@ -23,3 +24,45 @@ Supervisors work according to different strategies to decide how to restart chil
 ## Child Specifications
 
 Child specifications define how a child process is started, how often it should be restarted, and other settings.
+
+## Example on fault tolerance :
+
+```elixir
+defmodule MyWorker do
+  use GenServer
+
+  def start_link(_) do
+    GenServer.start_link(__MODULE__, 0, name: __MODULE__)
+  end
+
+  def increment do
+    GenServer.call(__MODULE__, :increment)
+  end
+
+  def handle_call(:increment, _from, state) do
+    {:reply, :ok, state + 1}
+  end
+end
+```
+
+```elixir
+defmodule MySupervisor do
+  use Supervisor
+
+  def start_link(_) do
+    Supervisor.start_link(__MODULE__, [], name: __MODULE__)
+  end
+
+  def init(_) do
+    children = [
+      {MyWorker, []}
+    ]
+
+    Supervisor.init(children, strategy: :one_for_one)
+  end
+end
+```
+
+```elixir
+MySupervisor.start_link([])
+```
