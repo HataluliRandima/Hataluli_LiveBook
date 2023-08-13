@@ -89,3 +89,24 @@ There are several approaches for handling child process crashes:
 * type - Optional key. Processes can be either :worker or :supervisor. Defaults to :worker.
 
 ## DynamicSupervisor
+
+Dynamic supervision allows you to manage child processes that are created at runtime. This is useful when you don't know the children beforehand.
+
+<b>
+It only support one_for_one supervision strategy.
+</b>
+
+Example A chat application where each user connection spawns a new supervised process:
+
+```elixir
+options = [name: ChatApp.Supervisor, strategy: :one_for_one]
+DynamicSupervisor.start_link(options)
+
+# To start a new chat handler dynamically:
+
+{:ok, pid} = DynamicSupervisor.start_child(ChatApp.Supervisor, ChatHandler)
+```
+
+## Task Supervisor
+
+It will be done on vs code
