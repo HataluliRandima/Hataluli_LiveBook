@@ -2,4 +2,15 @@
 
 ## Supervision Trees
 
-A supervision tree is a hierarchical structure of supervisors and worker processes. Supervisors can oversee other supervisors, creating a tree-like structure that enhances fault tolerance
+A supervision tree is a hierarchical structure of supervisors and worker processes. Supervisors can oversee other supervisors, creating a tree-like structure that enhances fault tolerance.
+
+## Restart Strategies
+
+<b>
+These define how the supervisor will react to child failures.
+</b>
+
+* :one_for_one: If a child process terminates, only that process is
+  restarted.
+* :one_for_all: If a child process terminates, all other child processes are terminated and restarted.
+* :rest_for_one: If a child process terminates, the rest of the children started after it are terminated and restarted.
