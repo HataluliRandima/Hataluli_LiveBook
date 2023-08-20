@@ -35,3 +35,7 @@ Think of it as a menu in a restaurant. You, the customer, have a list of dishes 
 * <b>WebSockets:</b> Unlike the request-response model of REST and GraphQL, WebSockets allow a continuous two-way communication between the client and server. It's useful for applications that require real-time functionality.
 
 * <b>gRPC:</b> Developed by Google, gRPC is a high-performance, open-source framework that uses HTTP/2 for transport and Protocol Buffers as the interface description language.
+
+## Rest API and OpenAPI
+
+
